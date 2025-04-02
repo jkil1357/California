@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메인 페이지</title>
+  <link rel="stylesheet" href="/css/main-style.css">
+  <style>
+    /* main.html 에만 필요한 추가 스타일 (선택 사항) */
+    .main-container {
+        background-color: white;
+        padding: 40px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 600px; /* 메인 페이지는 조금 더 넓게 */
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+        margin-top: 50px;
+    }
+    .main-container h1 {
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+    .main-container p {
+        margin-bottom: 30px;
+        font-size: 1.1em;
+    }
+    .action-link { /* 버튼 대신 링크 스타일 */
+        display: inline-block;
+        padding: 10px 25px;
+        background-color: #0a66c2;
+        color: white;
+        text-decoration: none;
+        border-radius: 20px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        margin-right: 15px; /* 링크 간 간격 */
+    }
+    .action-link:hover {
+        background-color: #004182;
+    }
+    .logout-link {
+         margin-top: 30px;
+         display: block;
+         color: #666;
+         font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+<div class="content-wrapper"> <div class="main-container">
+  <h1>메인 페이지</h1>
+
+  <p th:if="${session.loggedInUserId}">
+    <span th:text="${session.loggedInUserId}">사용자</span>님, 환영합니다!
+  </p>
+  <p th:unless="${session.loggedInUserId}">
+    환영합니다! (로그인 사용자 정보를 가져오지 못했습니다.)
+  </p>
+
+  <a th:href="@{/messages/new}" class="action-link">새 메시지 작성하기</a>
+  <a href="/logout" class="logout-link">로그아웃</a>
+</div>
+</div>
+</body>
+</html>

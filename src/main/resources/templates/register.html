@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="/css/login-style.css">
+</head>
+<body>
+<div class="login-wrapper">
+  <form action="/register" method="post" th:object="${memberRegisterDto}">
+    <div class="login-container">
+      <div class="logo">YourApp</div>
+      <h2>회원가입</h2>
+      <p class="subtitle">새 계정을 만들어 서비스를 이용해보세요.</p>
+
+      <p th:if="${error}" th:text="${error}" class="error-message" style="color: red; font-size: 0.9em; margin-bottom: 15px; text-align: left;"></p>
+
+      <div class="input-group">
+        <input type="email" id="email" th:field="*{email}" placeholder="이메일 주소" required>
+      </div>
+      <div class="input-group">
+        <input type="text" id="name" th:field="*{name}" placeholder="이름" required>
+      </div>
+      <div class="input-group">
+        <input type="text" id="loginId" th:field="*{loginId}" placeholder="아이디 (영문/숫자, 4자 이상)" required minlength="4" pattern="[a-zA-Z0-9]+">
+      </div>
+      <div class="input-group">
+        <input type="password" id="password" th:field="*{password}" placeholder="비밀번호 (6자 이상)" required minlength="6">
+      </div>
+      <div class="input-group">
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="비밀번호 확인" required>
+      </div>
+
+      <div class="agreement-group">
+        <input type="checkbox" id="agree" name="agree" value="true" required>
+        <label for="agree"> 이용약관 및 개인정보처리방침에 동의합니다.</label>
+      </div>
+
+      <button type="submit" class="login-button">동의하고 가입하기</button>
+
+      <p class="login-link">이미 계정이 있으신가요? <a href="/login">로그인</a></p>
+    </div>
+  </form>
+</div>
+</body>
+</html>

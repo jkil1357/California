@@ -1,0 +1,184 @@
+/* 기본 스타일 초기화 및 폰트 설정 */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f3f2ef; /* LinkedIn 배경색과 유사하게 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.login-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px; /* 모바일 화면 여백 */
+}
+
+.login-container {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box; /* 패딩 포함 너비 계산 */
+}
+
+/* 로고 스타일 */
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #0a66c2; /* LinkedIn 파란색 */
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 1.6em;
+    margin-bottom: 8px;
+    color: #191919;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 0.95em;
+    color: #5e5e5e;
+    margin-bottom: 30px;
+}
+
+/* 입력 필드 그룹 */
+.input-group {
+    margin-bottom: 15px;
+    position: relative; /* 비밀번호 '표시' 버튼 위치 기준 */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box; /* 패딩 포함 너비 계산 */
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #0a66c2;
+    box-shadow: 0 0 0 1px #0a66c2;
+}
+
+/* 비밀번호 '표시' 버튼 */
+.password-group {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #0a66c2;
+    font-weight: 600;
+    font-size: 0.9em;
+    padding: 5px;
+}
+
+/* 비밀번호 찾기 링크 */
+.forgot-password {
+    display: block;
+    text-align: right;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #0a66c2;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* 로그인 버튼 */
+.login-button {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #0a66c2;
+    color: white;
+    border: none;
+    border-radius: 20px; /* 둥근 버튼 */
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    background-color: #004182; /* 호버 시 더 진한 파란색 */
+}
+
+/* 회원가입 링크 */
+.signup-link {
+    margin-top: 30px;
+    font-size: 0.95em;
+    color: #5e5e5e;
+}
+
+.signup-link a {
+    color: #0a66c2;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* 에러 메시지 스타일 (옵션) */
+.error-message {
+    color: #d93025; /* 빨간색 에러 표시 */
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    text-align: left; /* 에러 메시지는 왼쪽 정렬 */
+}
+
+.agreement-group {
+    margin: 20px 0;
+    text-align: left;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.agreement-group input[type="checkbox"] {
+    margin-right: 8px;
+    /* 기본 체크박스 대신 커스텀 디자인을 원하면 추가 스타일링 필요 */
+    width: auto; /* input 기본 스타일 오버라이드 */
+    vertical-align: middle;
+}
+.agreement-group label {
+    vertical-align: middle;
+}
+
+
+/* 회원가입 페이지 하단 로그인 링크 스타일 */
+.login-link {
+    margin-top: 30px;
+    font-size: 0.95em;
+    color: #5e5e5e;
+}
+
+.login-link a {
+    color: #0a66c2;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

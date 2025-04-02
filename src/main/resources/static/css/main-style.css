@@ -1,0 +1,211 @@
+/* 기본 스타일 초기화 및 폰트 설정 */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f3f2ef; /* 전체 배경색 */
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: flex-start; /* 세로 상단 정렬 */
+    min-height: 100vh;
+    padding-top: 50px; /* 위쪽 여백 */
+    box-sizing: border-box;
+    color: #333;
+}
+
+/* 내용 감싸는 div */
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 로그인, 회원가입, 메시지 폼 컨테이너 공통 스타일 */
+.form-container {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 450px; /* 적절한 최대 너비 설정 */
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.form-container h2 {
+    font-size: 1.6em;
+    margin-bottom: 8px;
+    color: #191919;
+    font-weight: 600;
+}
+
+.form-container .subtitle {
+    font-size: 0.95em;
+    color: #5e5e5e;
+    margin-bottom: 30px;
+}
+
+/* 로고 스타일 (필요 시) */
+.form-container .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #0a66c2;
+    margin-bottom: 25px;
+}
+
+/* 입력 필드 그룹 */
+.input-group {
+    margin-bottom: 18px;
+    position: relative;
+    text-align: left; /* 레이블 왼쪽 정렬 */
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"],
+.input-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: #0a66c2;
+    box-shadow: 0 0 0 1px #0a66c2;
+}
+
+.input-group textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* 비밀번호 '표시' 버튼 (로그인/회원가입용) */
+.password-group .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 70%; /* 레이블이 있을 때 위치 조정 */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #0a66c2;
+    font-weight: 600;
+    font-size: 0.9em;
+    padding: 5px;
+}
+
+/* 링크 스타일 */
+.forgot-password { /* 로그인 */
+    display: block;
+    text-align: right;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #0a66c2;
+    text-decoration: none;
+    font-weight: 600;
+}
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.signup-link, /* 로그인 */
+.login-link {  /* 회원가입 */
+    margin-top: 30px;
+    font-size: 0.95em;
+    color: #5e5e5e;
+}
+.signup-link a,
+.login-link a {
+    color: #0a66c2;
+    text-decoration: none;
+    font-weight: 600;
+}
+.signup-link a:hover,
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* 약관 동의 그룹 (회원가입) */
+.agreement-group {
+    margin: 20px 0;
+    text-align: left;
+    font-size: 0.9em;
+    color: #555;
+}
+.agreement-group input[type="checkbox"] {
+    margin-right: 8px;
+    width: auto;
+    vertical-align: middle;
+}
+.agreement-group label {
+    vertical-align: middle;
+    font-weight: normal; /* 레이블 기본 스타일 */
+}
+
+/* 공통 액션 버튼 스타일 */
+.action-button {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #0a66c2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+.action-button:hover {
+    background-color: #004182;
+}
+
+/* 메시지 결과 표시 */
+.message-result {
+     margin-bottom: 15px;
+     padding: 10px;
+     border-radius: 4px;
+     text-align: center;
+     font-size: 0.95em;
+}
+.message-success {
+     background-color: #dff0d8;
+     color: #3c763d;
+     border: 1px solid #d6e9c6;
+}
+.message-error {
+     background-color: #f2dede;
+     color: #a94442;
+     border: 1px solid #ebccd1;
+}
+
+/* 네비게이션 링크 (메시지 작성 페이지 등) */
+.navigation-links {
+    margin-top: 25px;
+    font-size: 0.95em;
+}
+.navigation-links a {
+    color: #0a66c2;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 10px;
+}
+.navigation-links a:hover {
+    text-decoration: underline;
+}

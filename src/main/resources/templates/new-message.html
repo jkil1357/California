@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>새 메시지 작성</title>
+  <link rel="stylesheet" href="/css/main-style.css">
+</head>
+<body>
+<div class="content-wrapper"> <div class="form-container">
+  <h2>새 메시지 작성</h2>
+
+  <div th:if="${message}" class="message-result message-success" th:text="${message}"></div>
+  <div th:if="${error}" class="message-result message-error" th:text="${error}"></div>
+
+  <form th:action="@{/messages}" method="post" th:object="${sendMessageDto}">
+    <div class="input-group">
+      <label for="recipientNumber">받는 사람 전화번호:</label>
+      <input type="text" id="recipientNumber" th:field="*{recipientNumber}" placeholder="'-' 없이 숫자만 입력" required>
+    </div>
+    <div class="input-group">
+      <label for="content">메시지 내용:</label>
+      <textarea id="content" th:field="*{content}" placeholder="메시지 내용을 입력하세요" required></textarea>
+    </div>
+
+    <button type="submit" class="action-button">보내기 (DB 저장)</button>
+  </form>
+
+  <p class="navigation-links">
+    <a th:href="@{/main}">메인으로</a> |
+    <a href="/logout">로그아웃</a>
+  </p>
+</div>
+</div>
+</body>
+</html>

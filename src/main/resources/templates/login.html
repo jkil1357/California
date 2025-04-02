@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+  <link rel="stylesheet" href="/css/login-style.css"> </head>
+<body>
+<div class="login-wrapper">
+  <div class="login-container">
+    <div class="logo">California</div>
+
+    <h2>로그인 하세요</h2>
+    <p class="subtitle">쉽게 빠르게 대용량 문자를 보내보세요!</p>
+
+    <p th:if="${error}" th:text="${error}" class="error-message" style="color: red; font-size: 0.9em; margin-bottom: 15px;"></p>
+
+
+    <form action="/login" method="post"> <div class="input-group">
+      <input type="text" id="loginId" name="loginId" placeholder="아이디" required>
+    </div>
+      <div class="input-group password-group">
+        <input type="password" id="password" name="password" placeholder="비밀번호" required>
+        <button type="button" id="togglePassword" class="toggle-password">표시</button>
+      </div>
+
+      <a href="#" class="forgot-password">비밀번호를 잊으셨나요?</a>
+
+      <button type="submit" class="login-button">로그인</button>
+    </form>
+
+    <p class="signup-link">처음이세요? <a href="/register">회원 가입</a></p>
+  </div>
+</div>
+
+<script>
+  // 비밀번호 표시/숨기기 기능 (간단 구현)
+  const togglePassword = document.getElementById('togglePassword');
+  const passwordInput = document.getElementById('password');
+
+  togglePassword.addEventListener('click', function () {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      this.textContent = type === 'password' ? '표시' : '숨김';
+  });
+</script>
+</body>
+</html>
