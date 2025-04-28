@@ -17,10 +17,6 @@
 
 - 데이터 흐름
 
-# spring hexagonal agent
-
-- spring hexagonal architecture 기반 agent 교육 프로젝트
-
 # goal
 
 - [ ] 전송 테이블 설계
@@ -39,16 +35,16 @@
 
 ## main-kny
 
-- 교육생 이니셜 전용 브랜치
+- 전용 브랜치
 
 ## main-kyg
 
-- 교육생 이니셜 전용 브랜치
+- 전용 브랜치
 
 ## main-pjh
 
-- 교육생 이니셜 전용 브랜치
+- 전용 브랜치
 
 ## main bmj
 
-- 교육생 이니셜 전용 브랜치
+- 전용 브랜치
