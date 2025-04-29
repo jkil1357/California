@@ -32,11 +32,11 @@ public class ShortMessageServiceEntity {
     @Column(name = "callback_number", nullable = false, length = 20)
     private String callbackNumber;
 
-    @Column(name = "message", nullable = false, length = 20)
+    @Column(name = "message", nullable = false, length = 70)
     private String message;
 
-    @Column(name = "toto", nullable = false, length = 20)
-    private String to;
+    @Column(name = "title", nullable = false, length = 20)
+    private String title;
 
     @Column(name = "status", nullable = false, length = 8)
     private String status;
