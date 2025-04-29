@@ -10,6 +10,7 @@ public record ShortMessage(
         String receiveNumber,
         String callbackNumber,
         String message,
+        String subject,
         String status,
         String to
 

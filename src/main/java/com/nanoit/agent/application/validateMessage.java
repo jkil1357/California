@@ -3,6 +3,8 @@ package com.nanoit.agent.application;
 import com.nanoit.agent.domain.Message;
 import com.nanoit.agent.domain.ShortMessage;
 
+import java.nio.charset.StandardCharsets;
+
 public class validateMessage { // ✅ 클래스 선언 추가!
 
     public static void validateMessage(Message message) {
@@ -10,16 +12,30 @@ public class validateMessage { // ✅ 클래스 선언 추가!
             throw new IllegalArgumentException("지원하지 않는 메시지 타입입니다.");
         }
 
-        if (shortMessage.to() == null || !shortMessage.to().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
+// 수신번호 검사
+        if (shortMessage.receiveNumber() == null || !shortMessage.receiveNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
             throw new IllegalArgumentException("유효하지 않은 수신번호입니다.");
         }
 
+// 발신번호 검사
         if (shortMessage.callbackNumber() == null || !shortMessage.callbackNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
             throw new IllegalArgumentException("유효하지 않은 발신번호입니다.");
         }
 
+// 제목 유효성 검사
+        if (shortMessage.subject() == null || shortMessage.subject().isBlank()) {
+            throw new IllegalArgumentException("제목이 비어있습니다.");
+        }
+        if (shortMessage.subject().getBytes(StandardCharsets.UTF_8).length > 90) {
+            throw new IllegalArgumentException("제목은 90byte 이하이어야 합니다.");
+        }
+
+// 메시지 내용 유효성 검사
         if (shortMessage.message() == null || shortMessage.message().isBlank()) {
             throw new IllegalArgumentException("메시지 내용이 비어있습니다.");
+        }
+        if (shortMessage.message().getBytes(StandardCharsets.UTF_8).length > 200) {
+            throw new IllegalArgumentException("메시지 내용은 200byte 이하이어야 합니다.");
         }
     }
 }
