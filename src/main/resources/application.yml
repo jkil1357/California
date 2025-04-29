@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: spring-hexagonal-agent
+
+  datasource: # H2
+    driver-class-name: org.h2.Driver
+    url: 'jdbc:h2:mem:test'   # memory mode
+    #url: 'jdbc:h2:~/test'    # embeded mode
+#    username: test
+#    password: test
+
+  h2: # h2 console
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+        show_sql: true
