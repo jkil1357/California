@@ -13,28 +13,28 @@ public class validateMessage { // ✅ 클래스 선언 추가!
         }
 
 // 수신번호 검사
-        if (shortMessage.receiveNumber() == null || !shortMessage.receiveNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
+        if (shortMessage.getSenderNumber()== null || !shortMessage.receiveNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
             throw new IllegalArgumentException("유효하지 않은 수신번호입니다.");
         }
 
 // 발신번호 검사
-        if (shortMessage.callbackNumber() == null || !shortMessage.callbackNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
+        if (shortMessage.getReceiverNumber() == null || !shortMessage.callbackNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
             throw new IllegalArgumentException("유효하지 않은 발신번호입니다.");
         }
 
 // 제목 유효성 검사
-        if (shortMessage.subject() == null || shortMessage.subject().isBlank()) {
+        if (shortMessage.getTitle() == null || shortMessage.getTitle().isBlank()) {
             throw new IllegalArgumentException("제목이 비어있습니다.");
         }
-        if (shortMessage.subject().getBytes(StandardCharsets.UTF_8).length > 90) {
+        if (shortMessage.getTitle().getBytes(StandardCharsets.UTF_8).length > 90) {
             throw new IllegalArgumentException("제목은 90byte 이하이어야 합니다.");
         }
 
 // 메시지 내용 유효성 검사
-        if (shortMessage.message() == null || shortMessage.message().isBlank()) {
+        if (shortMessage.getContent() == null || shortMessage.message().isBlank()) {
             throw new IllegalArgumentException("메시지 내용이 비어있습니다.");
         }
-        if (shortMessage.message().getBytes(StandardCharsets.UTF_8).length > 200) {
+        if (shortMessage.getContent().getBytes(StandardCharsets.UTF_8).length > 200) {
             throw new IllegalArgumentException("메시지 내용은 200byte 이하이어야 합니다.");
         }
     }
