@@ -19,10 +19,10 @@ public class MessageInputPort {
 
         // 메시지 생성
         ShortMessage message = ShortMessage.builder()
-                .id("msg001")
-                .receiveNumber("010-1234-5678")
-                .callbackNumber("010-8765-4321")
-                .message("테스트입니다")
+                .title("msg001")
+                .receiverNumber("010-1234-5678")
+                .senderNumber("010-8765-4321")
+                .content("테스트입니다")
                 .status("READY")
                 .to("KT")
                 .build();
