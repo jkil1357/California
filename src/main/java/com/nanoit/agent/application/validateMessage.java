@@ -5,7 +5,7 @@ import com.nanoit.agent.domain.ShortMessage;
 
 import java.nio.charset.StandardCharsets;
 
-public class validateMessage { // ✅ 클래스 선언 추가!
+public class validateMessage {
 
     public static void validateMessage(Message message) {
         if (!(message instanceof ShortMessage shortMessage)) {
@@ -13,12 +13,12 @@ public class validateMessage { // ✅ 클래스 선언 추가!
         }
 
 // 수신번호 검사
-        if (shortMessage.getSenderNumber()== null || !shortMessage.receiveNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
+        if (shortMessage.getSenderNumber()== null || !shortMessage.getSenderNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
             throw new IllegalArgumentException("유효하지 않은 수신번호입니다.");
         }
 
 // 발신번호 검사
-        if (shortMessage.getReceiverNumber() == null || !shortMessage.callbackNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
+        if (shortMessage.getReceiverNumber() == null || !shortMessage.getReceiverNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
             throw new IllegalArgumentException("유효하지 않은 발신번호입니다.");
         }
 
@@ -31,7 +31,7 @@ public class validateMessage { // ✅ 클래스 선언 추가!
         }
 
 // 메시지 내용 유효성 검사
-        if (shortMessage.getContent() == null || shortMessage.message().isBlank()) {
+        if (shortMessage.getContent() == null || shortMessage.getContent().isBlank()) {
             throw new IllegalArgumentException("메시지 내용이 비어있습니다.");
         }
         if (shortMessage.getContent().getBytes(StandardCharsets.UTF_8).length > 200) {
