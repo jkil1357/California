@@ -34,6 +34,8 @@ public class ShortMessageServiceImpl implements ShortMessageService {
 
     @Override
     public void update(ShortMessageServiceEntity shortMessageServiceEntity) {
-
+        if (shortMessageServiceEntity != null) {
+            shortMessageServiceRepository.save(shortMessageServiceEntity);
+        }
     }
 }
