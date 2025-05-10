@@ -1,28 +1,16 @@
 spring:
-  application:
-    name: spring-hexagonal-agent
-
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306:/agent_db   # memory mode
-    #url: 'jdbc:h2:~/test'    # embeded mode
+    url: jdbc:mariadb://localhost:3306/agent_db
     username: tester
     password: 1234
 
-
-
-
-  #h2: # h2 console
-    #console:
-     #enabled: true
-      #path: /h2-console
-
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.MariaDBDialect
     hibernate:
-      ddl-auto: create
+      #ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-        format_sql: true
+        dialect: org.hibernate.dialect.MariaDBDialect
+        #format_sql: true
         show_sql: true
