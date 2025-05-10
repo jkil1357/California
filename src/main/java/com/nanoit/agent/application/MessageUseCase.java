@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class MessageUseCase implements MessageInputPort {
+public class MessageUseCase extends MessageInputPort {
 
     private final KtTransportOutputPort ktTransportOutputPort;
     private final NanoitTransportOutputPort nanoitTransportOutputPort;
@@ -19,21 +19,11 @@ public class MessageUseCase implements MessageInputPort {
         this.persistenceOutputPort = persistenceOutputPort;
     }
 
-    /**
-     * 비즈니스 로직을 구현하고 유효한 메시지일 경우 transport 영역으로 전달한다.
-     * 필요한 경우 persistence port로 업데이트를 진행한다.
-     */
     @Override
     public void send(Message message) {
         log.info("{}", message);
         validateMessage.validateMessage(message);
-        // 비즈니스 로직 1 - 수신번호가 전화번호가 맞는지
-        // 비즈니스 로직 2 - 발신번호가 전화번호가 맞는지
-        // 비즈니스 로직 3 - 메시지 내용이 있는지
-        // 비즈니스 로직
-        // 비즈니스 로직
-        // 비즈니스 로직
-        // 비즈니스 로직
+
 
         if (message instanceof ShortMessage shortMessage) {
             if (shortMessage.to().equalsIgnoreCase("KT")) {

@@ -17,6 +17,7 @@ import java.util.List;
 @Slf4j
 @EnableScheduling
 @Component
+
 public class SelectSchedulerInputAdapter {
 
     private final ShortMessageService shortMessageService;
@@ -27,11 +28,6 @@ public class SelectSchedulerInputAdapter {
         this.messageInputPort = messageInputPort;
     }
 
-    /**
-     * 1초 마다 실행되는 메소드.
-     * <p>
-     * 1초마다 대기 상태의 모든 메시지를 조회한 후 대상 데이터를 transport input port의 send 메소드를 통해 데이터를 전달한다.
-     */
     @Scheduled(fixedDelay = 1000L)
     public void select() {
         log.info("select scheduling");
@@ -40,7 +36,8 @@ public class SelectSchedulerInputAdapter {
             allByStatusIsWaitAndUpdate.forEach(sms -> log.info("{}", sms));
         }
         allByStatusIsWaitAndUpdate.stream()
-                .map(entity -> new ShortMessage(entity.getId(), entity.getReceiveNumber(), entity.getCallbackNumber(), entity.getMessage(), entity.getStatus(), entity.getTo()))
+                .map(entity -> new ShortMessage(entity.getReceiveNumber(), entity.getStatus(),entity.getSenderNumber(), entity.getMessage(), entity.getTitle(), entity.getTo()
+                ,entity.get))
                 .toList()
                 .forEach(messageInputPort::send);
     }

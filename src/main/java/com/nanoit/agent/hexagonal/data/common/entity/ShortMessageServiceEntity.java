@@ -22,20 +22,20 @@ import java.time.LocalDateTime;
 public class ShortMessageServiceEntity {
 
     @Id
-    @Column(name = "id", nullable = false, length = 20)
+    @Column(name = "title", nullable = false, length = 20)
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String id;
+    private String title;
 
-    @Column(name = "receive_number", nullable = false, length = 20)
-    private String receiveNumber;
+    @Column(name = "Receive_number", nullable = false, length = 20)
+    private String ReceiveNumber;
 
-    @Column(name = "callback_number", nullable = false, length = 20)
-    private String callbackNumber;
+    @Column(name = "SenderNumber", nullable = false, length = 20)
+    private String SenderNumber;
 
     @Column(name = "message", nullable = false, length = 20)
     private String message;
 
-    @Column(name = "toto", nullable = false, length = 20)
+    @Column(name = "to", nullable = false, length = 20)
     private String to;
 
     @Column(name = "status", nullable = false, length = 8)

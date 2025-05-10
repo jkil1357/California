@@ -13,12 +13,12 @@ public class validateMessage {
         }
 
 // 수신번호 검사
-        if (shortMessage.getSenderNumber()== null || !shortMessage.getSenderNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
+        if (shortMessage.getSenderNumber()== null || !shortMessage.getSenderNumber().matches("^01[0]-?\\d{4}-?\\d{4}$")) {
             throw new IllegalArgumentException("유효하지 않은 수신번호입니다.");
         }
 
 // 발신번호 검사
-        if (shortMessage.getReceiverNumber() == null || !shortMessage.getReceiverNumber().matches("^01[016789]-?\\d{3,4}-?\\d{4}$")) {
+        if (shortMessage.getReceiverNumber() == null || !shortMessage.getReceiverNumber().matches("^01[0]-?\\d{4}-?\\d{4}$")) {
             throw new IllegalArgumentException("유효하지 않은 발신번호입니다.");
         }
 

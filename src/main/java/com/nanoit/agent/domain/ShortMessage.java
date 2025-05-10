@@ -9,15 +9,26 @@ import lombok.With;
 @Builder
 public class ShortMessage implements Message {
 
-    private String senderNumber;
-    private String receiverNumber;
-    private String title;
-    private String content;
-
-    private String status;      // 전송 상태: OK, FAIL, INVALID 등
+    private String senderNumber;   //발신자
+    private String receiverNumber; //수신자
+    private String title;          //메세지 제목
+    private String content;        //메세지 내용
+    private String status;
     private String to;          // 전송 대상: KT, NANOIT
-    private int priority;       // 우선순위
-    private boolean urgent;     // 긴급 여부
+
+    private int priority;
+    private boolean urgent;
+
+    public ShortMessage(String senderNumber, String receiverNumber, String title, String content, String status, String to) {
+        this.senderNumber = senderNumber;
+        this.receiverNumber = receiverNumber;
+        this.title = title;
+        this.content = content;
+        this.status = status;
+        this.to = to;
+        this.priority = priority;
+        this.urgent = urgent;
+    }
 
     @Override
     public String getSenderNumber() {

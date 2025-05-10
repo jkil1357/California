@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Spring IOC
- * Spring JPA
  * Spring JPA MYSQL
  * Spring repository
  * Spring Service
