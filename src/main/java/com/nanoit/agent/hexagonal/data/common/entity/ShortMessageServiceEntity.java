@@ -41,11 +41,9 @@ public class ShortMessageServiceEntity {
     @Column(name = "status", nullable = false, length = 8)
     private String status;
 
-    @ColumnDefault("now()")
-    @Column(name = "created_datetime", nullable = false)
-    private LocalDateTime createdDateTime;
+    @Column(name = "priority", nullable = false)
+    private int priority;
 
-    @ColumnDefault("now()")
-    @Column(name = "modified_datetime", nullable = false)
-    private LocalDateTime modifiedDateTime;
+    @Column(name = "urgent", nullable = false)
+    private boolean urgent;
 }

@@ -37,7 +37,7 @@ public class SelectSchedulerInputAdapter {
         }
         allByStatusIsWaitAndUpdate.stream()
                 .map(entity -> new ShortMessage(entity.getReceiveNumber(), entity.getStatus(),entity.getSenderNumber(), entity.getMessage(), entity.getTitle(), entity.getTo()
-                ,entity.get))
+                ,entity.getPriority(),entity.isUrgent()))
                 .toList()
                 .forEach(messageInputPort::send);
     }

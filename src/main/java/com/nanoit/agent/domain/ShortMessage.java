@@ -19,7 +19,7 @@ public class ShortMessage implements Message {
     private int priority;
     private boolean urgent;
 
-    public ShortMessage(String senderNumber, String receiverNumber, String title, String content, String status, String to) {
+    public ShortMessage(String senderNumber, String receiverNumber, String title, String content, String status, String to, int priority, boolean urgent) {
         this.senderNumber = senderNumber;
         this.receiverNumber = receiverNumber;
         this.title = title;
