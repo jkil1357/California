@@ -1,1 +1,42 @@
+package com.nanoit.agent.core;
+
+import com.nanoit.agent.domain.Message;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ValidateMessage {
+
+    /**
+     * 메시지 유효성 검사
+     * - 수신번호, 발신번호, 본문 검사
+     * - 포맷 불일치나 제한 초과 시 예외 발생
+     */
+    public void validate(Message message) {
+        // 수신번호 검사
+        String receiver = message.receiveNumber();
+        if (receiver == null || receiver.isBlank()) {
+            throw new IllegalArgumentException("수신번호가 없습니다.");
+        }
+        if (!receiver.matches("^01[016-9]\\d{7,8}$")) {
+            throw new IllegalArgumentException("수신번호 형식이 잘못되었습니다.");
+        }
+
+        //메시지 본문 검사
+        String content = message.message();
+        if (content == null || content.isBlank()) {
+            throw new IllegalArgumentException("메시지 본문이 없습니다.");
+        }
+        if (content.getBytes().length > 200) {
+            throw new IllegalArgumentException("메시지 본문이 너무 깁니다. (200 byte 초과)");
+        }
+
+        // 발신번호 검사
+        String callback = message.callbackNumber();
+        if (callback == null || callback.isBlank()) {
+            throw new IllegalArgumentException("발신번호가 없습니다.");
+        }
+
+        
+    }
+}
 
