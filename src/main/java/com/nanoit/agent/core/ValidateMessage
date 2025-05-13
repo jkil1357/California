@@ -17,7 +17,7 @@ public class ValidateMessage {
         if (receiver == null || receiver.isBlank()) {
             throw new IllegalArgumentException("수신번호가 없습니다.");
         }
-        if (!receiver.matches("^01[016-9]\\d{7,8}$")) {
+        if (!receiver.matches("^01[016-9]\\d{7,8}$")) { //전화번호 형식 검사
             throw new IllegalArgumentException("수신번호 형식이 잘못되었습니다.");
         }
 
