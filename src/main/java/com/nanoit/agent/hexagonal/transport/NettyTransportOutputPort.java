@@ -2,15 +2,27 @@ package com.nanoit.agent.hexagonal.transport;
 
 import com.nanoit.agent.application.TransportOutputPort;
 import com.nanoit.agent.domain.Message;
+import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class NettyTransportOutputPort implements TransportOutputPort {
 
-    /**
-     * Netty 구현체가 위치해야 하며 전달 받은 도메인 영역의 Message를 Byte Array로 변환해 외부 서버로 전송한다.
-     */
+    private final MessageSerializer serializer;
+
+    public NettyTransportOutputPort(MessageSerializer serializer) {
+        this.serializer = serializer;
+    }
+
     @Override
     public boolean send(Message message) {
-        return false;
+        try {
+            byte[] data = serializer.toBytes(message);
+            new NettyClient().send("127.0.0.1", 9001, data); // 필요시 IP/포트 수정
+            return true;
+        } catch (Exception e) {
+            System.err.println("Netty 전송 실패: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 }

@@ -22,28 +22,30 @@ import java.time.LocalDateTime;
 public class ShortMessageServiceEntity {
 
     @Id
-    @Column(name = "title", nullable = false, length = 20)
+    @Column(name = "id", nullable = false, length = 20)
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String title;
+    private String id;
 
-    @Column(name = "Receive_number", nullable = false, length = 20)
-    private String ReceiveNumber;
+    @Column(name = "receive_number", nullable = false, length = 20)
+    private String receiveNumber;
 
-    @Column(name = "SenderNumber", nullable = false, length = 20)
-    private String SenderNumber;
+    @Column(name = "callback_number", nullable = false, length = 20)
+    private String callbackNumber;
 
-    @Column(name = "message", nullable = false, length = 20)
+    @Column(name = "message", nullable = false, length = 70)
     private String message;
 
-    @Column(name = "to", nullable = false, length = 20)
-    private String to;
+    @Column(name = "title", nullable = false, length = 20)
+    private String title;
 
     @Column(name = "status", nullable = false, length = 8)
     private String status;
 
-    @Column(name = "priority", nullable = false)
-    private int priority;
+    @ColumnDefault("now()")
+    @Column(name = "created_datetime", nullable = false)
+    private LocalDateTime createdDateTime;
 
-    @Column(name = "urgent", nullable = false)
-    private boolean urgent;
+    @ColumnDefault("now()")
+    @Column(name = "modified_datetime", nullable = false)
+    private LocalDateTime modifiedDateTime;
 }
