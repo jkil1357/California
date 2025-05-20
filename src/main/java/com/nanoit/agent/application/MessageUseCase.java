@@ -1,5 +1,6 @@
 package com.nanoit.agent.application;
 
+import com.nanoit.agent.domain.LongMessage;
 import com.nanoit.agent.domain.Message;
 import com.nanoit.agent.domain.ShortMessage;
 import java.nio.charset.StandardCharsets;
@@ -37,14 +38,14 @@ public class MessageUseCase implements MessageInputPort {
             // 1. 수신번호 유효성 검사 (숫자 10~11자리)
             if (!isValidPhoneNumber(shortMessage.receiveNumber())) {
                 log.error("잘못된 수신번호: {}", shortMessage.receiveNumber());
-                persistenceOutputPort.update(shortMessage.withStatus("INVALID"));
+                persistenceOutputPort.update(shortMessage.withStatus("INVALID"), "잘못된 수신번호");
                 return;
             }
 
             // 2. 발신번호 유효성 검사
             if (!isValidPhoneNumber(shortMessage.callbackNumber())) {
                 log.error("잘못된 발신번호: {}", shortMessage.callbackNumber());
-                persistenceOutputPort.update(shortMessage.withStatus("INVALID"));
+                persistenceOutputPort.update(shortMessage.withStatus("INVALID"), "잘못된 발신번호");
                 return;
             }
 
@@ -68,23 +69,19 @@ public class MessageUseCase implements MessageInputPort {
                 // kt로 전송하고 싶을때
                 if (ktTransportOutputPort.send(message)) {
                     // 전송 성공
-                    shortMessage.withStatus("OK");
-                    persistenceOutputPort.update(shortMessage);
+                    persistenceOutputPort.update(shortMessage.withStatus("SENT"));
                 } else {
                     // 전송 실패
-                    shortMessage.withStatus("FAIL");
-                    persistenceOutputPort.update(message);
+                    persistenceOutputPort.update(shortMessage.withStatus("SENT_FAIL"));
                 }
             } else if (shortMessage.to().equalsIgnoreCase("NANOIT")) {
                 // 나노아이티로 전송하고 싶을때
                 if (nanoitTransportOutputPort.send(message)) {
                     // 전송 성공
-                    shortMessage.withStatus("OK");
-                    persistenceOutputPort.update(shortMessage);
+                    persistenceOutputPort.update(shortMessage.withStatus("SENT"));
                 } else {
                     // 전송 실패
-                    shortMessage.withStatus("FAIL");
-                    persistenceOutputPort.update(message);
+                    persistenceOutputPort.update(shortMessage.withStatus("SENT_FAIL"));
                 }
             }
         }

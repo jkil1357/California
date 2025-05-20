@@ -9,4 +9,8 @@ public interface ShortMessageService {
     List<ShortMessageServiceEntity> findAllByStatusIsWaitAndUpdate();
 
     void update(ShortMessageServiceEntity shortMessageServiceEntity);
+
+    ShortMessageServiceEntity findById(String id);
+
+    void deleteById(String id);
 }

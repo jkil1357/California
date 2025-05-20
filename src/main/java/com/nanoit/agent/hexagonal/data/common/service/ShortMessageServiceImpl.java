@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Spring Repository 에서 삭제하는 방법을 알려줘
+ * Service 클래스가 있는데 같이 연동할 수 있는 예제를 보여줘
+ */
 @Service
 public class ShortMessageServiceImpl implements ShortMessageService {
 
@@ -37,5 +41,18 @@ public class ShortMessageServiceImpl implements ShortMessageService {
         if (shortMessageServiceEntity != null) {
             shortMessageServiceRepository.save(shortMessageServiceEntity);
         }
+    }
+
+    @Override
+    public ShortMessageServiceEntity findById(String id) {
+        return shortMessageServiceRepository.findById(id).orElseThrow();
+    }
+
+    /**
+     * 추가됨
+     */
+    @Override
+    public void deleteById(String id) {
+        shortMessageServiceRepository.deleteById(id);
     }
 }

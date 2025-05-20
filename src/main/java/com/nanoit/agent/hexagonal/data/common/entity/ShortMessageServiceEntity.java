@@ -41,6 +41,9 @@ public class ShortMessageServiceEntity {
     @Column(name = "status", nullable = false, length = 8)
     private String status;
 
+    @Column(name = "result", length = 256)
+    private String result;
+
     @ColumnDefault("now()")
     @Column(name = "created_datetime", nullable = false)
     private LocalDateTime createdDateTime;
