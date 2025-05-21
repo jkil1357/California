@@ -52,14 +52,14 @@ public class MessageUseCase implements MessageInputPort {
             // 3. 제목 유효성 검사 (null 아니고 90바이트 이하)
             if (shortMessage.to() == null || getByteLength(shortMessage.to()) > 90) {
                 log.error("제목이 없거나 90바이트를 초과함. 제목: {}", shortMessage.to());
-                persistenceOutputPort.update(shortMessage.withStatus("INVALID"));
+                persistenceOutputPort.update(shortMessage.withStatus("INVALID"), "제목 길이 초과");
                 return;
             }
 
             // 4. 메시지 내용 유효성 검사 (null 아니고 200바이트 이하)
             if (shortMessage.message() == null || getByteLength(shortMessage.message()) > 200) {
                 log.error("메시지 내용이 없거나 200바이트를 초과함. 메시지: {}", shortMessage.message());
-                persistenceOutputPort.update(shortMessage.withStatus("INVALID"));
+                persistenceOutputPort.update(shortMessage.withStatus("INVALID"), "메시지 내용 오류");
                 return;
             }
         }
