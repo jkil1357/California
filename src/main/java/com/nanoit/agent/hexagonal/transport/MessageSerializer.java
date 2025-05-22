@@ -10,7 +10,7 @@ public class MessageSerializer {
 
     public byte[] toBytes(Message message) throws Exception {
         String json = objectMapper.writeValueAsString(message); //확인용
-        System.out.println("🔧 직렬화된 JSON: " + json); //확인용
+        System.out.println(" 직렬화된 JSON: " + json); //확인용
         return objectMapper.writeValueAsBytes(message);
     }
 }

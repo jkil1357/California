@@ -21,26 +21,19 @@ public class Test {
             // 2. 전송할 JSON 데이터
             String body = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(NanoitSms.builder()
                     .accountType("M")
-                    .id("kyu4627@naver.com")
-                    .apiKey("2340be17f4660ca49a77374dc67eed09")
+                    .id("kyu462755@gmail.com")
+                    .apiKey("7a1819fe914ab907c304b3583fc69a69")
                     .msg("테스트")
-                    .callNumber("15449405")
+                    .callNumber("01057069284")
                     .recvData(List.of(NanoitSms.RecvData.builder()
                                     .recvId("1")
                                     .recvNumber("01057069284")
                                     .build(),
                             NanoitSms.RecvData.builder()
                                     .recvId("2")
-                                    .recvNumber("01038997160")
-                                    .build(),
-                            NanoitSms.RecvData.builder()
-                                    .recvId("3")
                                     .recvNumber("01065158430")
-                                    .build(),
-                            NanoitSms.RecvData.builder()
-                                    .recvId("4")
-                                    .recvNumber("01035786335")
                                     .build()))
+
                     .build());
 
             System.out.println(body);

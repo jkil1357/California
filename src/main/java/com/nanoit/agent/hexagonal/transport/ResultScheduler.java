@@ -20,7 +20,8 @@ public class ResultScheduler {
         NanoitResult results = null;
 
         outputPort.update(ShortMessage.builder()
-                .id()
+                .id(),
+                .callbackNumber()
                 .build());
     }
 }

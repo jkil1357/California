@@ -19,7 +19,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 /**
- * 
+ *
  */
 @Slf4j
 @AllArgsConstructor
@@ -69,8 +69,8 @@ public class ToNanoitApiTransportOutputPort implements NanoitTransportOutputPort
                 try {
                     yield objectMapper.writeValueAsString(NanoitSms.builder()
                             .accountType("M")
-                            .id("kyu4627@naver.com")
-                            .apiKey("2340be17f4660ca49a77374dc67eed09")
+                            .id("kyu462755@gmail.com")
+                            .apiKey("7a1819fe914ab907c304b3583fc69a69")
                             .msg(shortMessage.message())
                             .callNumber(shortMessage.callbackNumber())
                             .recvData(List.of(NanoitSms.RecvData.builder()

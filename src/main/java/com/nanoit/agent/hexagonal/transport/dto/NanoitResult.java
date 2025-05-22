@@ -7,7 +7,16 @@ import lombok.With;
 @Builder
 public record NanoitResult(
         String code,
-        String message
+        String message,
+
+
+
+
+
+        String recvId,      // 메시지 ID → DB id
+        String status,      // "OK" / "FAIL"
+        String recvNumber,  // 수신자
+        String callback
         // ..
         ) {
 }
