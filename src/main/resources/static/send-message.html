@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>메시지 보내기</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+          --bg-color-light: #f5f7fa;
+          --text-color-light: #333;
+          --box-color-light: #ffffff;
+          --border-color-light: #ddd;
+
+          --bg-color-dark: #121212;
+          --text-color-dark: #f1f1f1;
+          --box-color-dark: #1e1e1e;
+          --border-color-dark: #444;
+
+          --primary-color: #4a90e2;
+        }
+
+        [data-theme="light"] {
+          --bg-color: var(--bg-color-light);
+          --text-color: var(--text-color-light);
+          --box-color: var(--box-color-light);
+          --border-color: var(--border-color-light);
+        }
+
+        [data-theme="dark"] {
+          --bg-color: var(--bg-color-dark);
+          --text-color: var(--text-color-dark);
+          --box-color: var(--box-color-dark);
+          --border-color: var(--border-color-dark);
+        }
+
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Pretendard', sans-serif;
+          background-color: var(--bg-color);
+          color: var(--text-color);
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          min-height: 100vh;
+          padding-top: 40px;
+        }
+
+        .container {
+          background-color: var(--box-color);
+          padding: 30px 24px;
+          border-radius: 16px;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+          width: 90%;
+          max-width: 420px;
+        }
+
+        h2 {
+          margin-bottom: 24px;
+          color: var(--text-color);
+          text-align: center;
+        }
+
+        .theme-toggle {
+          text-align: right;
+          margin-bottom: 16px;
+        }
+
+        .theme-toggle button {
+          background: none;
+          border: 1px solid var(--border-color);
+          border-radius: 8px;
+          padding: 6px 12px;
+          cursor: pointer;
+          font-size: 14px;
+          color: var(--text-color);
+        }
+
+        input[type="text"],
+        textarea {
+          width: 100%;
+          padding: 12px 14px;
+          margin-bottom: 16px;
+          border: 1px solid var(--border-color);
+          border-radius: 12px;
+          font-size: 16px;
+          box-sizing: border-box;
+          background-color: transparent;
+          color: var(--text-color);
+        }
+
+        input:focus,
+        textarea:focus {
+          outline: none;
+          border-color: var(--primary-color);
+          box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 100px;
+        }
+
+        button.send {
+          background-color: var(--primary-color);
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 12px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          width: 100%;
+        }
+
+        button.send:hover {
+          background-color: #357ABD;
+        }
+
+        #result {
+          margin-top: 12px;
+          font-weight: bold;
+        }
+
+        .history,
+        .sent-list {
+          margin-top: 24px;
+        }
+
+        .history h3,
+        .sent-list h3 {
+          font-size: 16px;
+          margin-bottom: 8px;
+          border-bottom: 1px solid var(--border-color);
+          padding-bottom: 4px;
+        }
+
+        ul {
+          padding-left: 16px;
+          font-size: 14px;
+          color: var(--text-color);
+        }
+
+        li {
+          margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="theme-toggle">
+        <button onclick="toggleTheme()">🌗 테마 전환</button>
+    </div>
+
+    <h2>📨 메시지 보내기</h2>
+    <input type="text" name="receiveNumber" placeholder="수신자 번호 (쉼표로 구분)" />
+    <textarea name="message" placeholder="메시지 내용" rows="4"></textarea>
+    <button class="send" onclick="sendMessage()">전송</button>
+    <p id="result"></p>
+
+    <div class="history">
+        <h3>📌 입력 히스토리</h3>
+        <ul id="inputHistoryList"></ul>
+    </div>
+
+    <div class="sent-list">
+        <h3>📤 전송 내역</h3>
+        <ul id="sentMessageList"></ul>
+    </div>
+</div>
+
+<script>
+    const historyList = document.getElementById("inputHistoryList");
+    const sentList = document.getElementById("sentMessageList");
+
+    function loadHistory() {
+      const history = JSON.parse(localStorage.getItem("inputHistory") || "[]");
+      historyList.innerHTML = "";
+      history.slice(-5).reverse().forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `번호: ${item.number} / 메시지: ${item.message}`;
+        historyList.appendChild(li);
+      });
+    }
+
+    function saveHistory(number, message) {
+      const history = JSON.parse(localStorage.getItem("inputHistory") || "[]");
+      history.push({ number, message });
+      localStorage.setItem("inputHistory", JSON.stringify(history));
+    }
+
+    function sendMessage() {
+      const rawInput = document.querySelector("input[name='receiveNumber']").value.trim();
+      const message = document.querySelector("textarea[name='message']").value.trim();
+      const resultEl = document.getElementById("result");
+
+      if (!rawInput || !message) {
+        resultEl.style.color = "red";
+        resultEl.textContent = "수신 번호와 메시지를 모두 입력해주세요.";
+        return;
+      }
+
+      const numbers = rawInput.split(",").map(n => n.trim()).filter(n => n);
+      if (numbers.length === 0) {
+        resultEl.style.color = "red";
+        resultEl.textContent = "올바른 전화번호를 입력해주세요.";
+        return;
+      }
+
+      let successCount = 0;
+      let failCount = 0;
+
+      resultEl.style.color = "black";
+      resultEl.textContent = `총 ${numbers.length}건 전송 중...`;
+
+      numbers.forEach(number => {
+        fetch("/send-message", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ receiveNumber: number, message: message })
+        })
+        .then(res => res.text())
+        .then(result => {
+          if (result.includes("성공")) {
+            appendSentMessage(number, message);
+            saveHistory(number, message);
+            successCount++;
+          } else {
+            appendSentMessage(number, `[실패] ${result}`);
+            failCount++;
+          }
+          resultEl.textContent = `✅ 성공 ${successCount}건 / ❌ 실패 ${failCount}건`;
+          loadHistory();
+        })
+        .catch(err => {
+          appendSentMessage(number, `[에러] ${err}`);
+          failCount++;
+          resultEl.textContent = `✅ 성공 ${successCount}건 / ❌ 실패 ${failCount}건`;
+        });
+      });
+    }
+
+    function appendSentMessage(number, message) {
+      const li = document.createElement("li");
+      const now = new Date().toLocaleString();
+      li.textContent = `[${now}] ${number} → ${message}`;
+      sentList.insertBefore(li, sentList.firstChild);
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute("data-theme");
+      const next = current === "dark" ? "light" : "dark";
+      html.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+    }
+
+    function applyStoredTheme() {
+      const stored = localStorage.getItem("theme");
+      if (stored) {
+        document.documentElement.setAttribute("data-theme", stored);
+      }
+    }
+
+    // 실행 시 저장된 테마 적용 + 히스토리 로드
+    applyStoredTheme();
+    loadHistory();
+</script>
+</body>
+</html>

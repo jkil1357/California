@@ -16,29 +16,29 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Entity
 @Table(name = "sms_msg")
 public class ShortMessageServiceEntity {
 
     @Id
-    @Column(name = "id", nullable = false, length = 20)
+    @Column(name = "id", length = 36)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String id;
 
-    @Column(name = "receive_number", nullable = false, length = 20)
+    @Column(name = "receive_number", length = 20)
     private String receiveNumber;
 
-    @Column(name = "callback_number", nullable = false, length = 20)
+    @Column(name = "callback_number", length = 20)
     private String callbackNumber;
 
-    @Column(name = "message", nullable = false, length = 70)
+    @Column(name = "message", length = 70)
     private String message;
 
-    @Column(name = "title", nullable = false, length = 20)
+    @Column(name = "title", length = 20)
     private String title;
 
-    @Column(name = "status", nullable = false, length = 8)
+    @Column(name = "status", length = 8)
     private String status;
 
     @Column(name = "result", length = 256)
