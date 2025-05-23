@@ -40,7 +40,7 @@ public class MessageController {
             entity.setCallbackNumber("01012345678");
             entity.setMessage(message);
             entity.setStatus("WAIT");
-            entity.setTitle(receiveNumber); // to 필드는 nullable = false라면 꼭 설정
+            entity.setTitle("null"); // to 필드는 nullable = false라면 꼭 설정
 
             repository.save(entity);
             return "문자전송 성공!";
