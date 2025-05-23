@@ -29,7 +29,7 @@ public class MessageController {
 
             if (receiveNumber == null || receiveNumber.isBlank() ||
                     message == null || message.isBlank()) {
-                return "수신 번호와 메시지를 모두 입력해주세요.";
+                return "수신 번호와 메시지를 입력해 주세요.";
             }
 
             ShortMessageServiceEntity entity = new ShortMessageServiceEntity();
@@ -37,7 +37,7 @@ public class MessageController {
             entity.setModifiedDateTime(LocalDateTime.now());
             entity.setId(UUID.randomUUID().toString());
             entity.setReceiveNumber(receiveNumber);
-            entity.setCallbackNumber("01012345678");
+            entity.setCallbackNumber("1544-6800");
             entity.setMessage(message);
             entity.setStatus("WAIT");
             entity.setTitle("null"); // to 필드는 nullable = false라면 꼭 설정

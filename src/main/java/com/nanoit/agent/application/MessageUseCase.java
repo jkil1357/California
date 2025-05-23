@@ -87,7 +87,9 @@ public class MessageUseCase implements MessageInputPort {
         }
     }
     private boolean isValidPhoneNumber(String number) {
-        return number != null && number.matches("^\\d{10,11}$");
+        return number != null && number.matches(
+                "^(\\d{9,11}|\\d{2,4}-\\d{3,4}-\\d{4}|\\d{4}-\\d{4})$"
+        );
     }
     private int getByteLength(String str) {
         return str.getBytes(StandardCharsets.UTF_8).length;
