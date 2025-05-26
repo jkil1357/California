@@ -7,9 +7,12 @@ import java.util.List;
 
 @With
 @Builder
+
+
 public record NanoitSms(
         String accountType,
         String id,
+        String ymd,
         String apiKey,
         String msg,
         String callNumber,
