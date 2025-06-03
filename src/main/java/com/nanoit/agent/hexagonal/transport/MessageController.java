@@ -37,7 +37,7 @@ public class MessageController {
             entity.setModifiedDateTime(LocalDateTime.now());
             entity.setId(UUID.randomUUID().toString());
             entity.setReceiveNumber(receiveNumber);
-            entity.setCallbackNumber("1544-6800");
+            entity.setCallbackNumber("01057069284");
             entity.setMessage(message);
             entity.setStatus("WAIT");
             entity.setTitle("null"); // to 필드는 nullable = false라면 꼭 설정

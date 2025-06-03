@@ -38,7 +38,7 @@ public class ShortMessageServiceEntity {
     @Column(name = "title", length = 20)
     private String title;
 
-    @Column(name = "status", length = 8)
+    @Column(name = "status", length = 10)
     private String status;
 
     @Column(name = "result", length = 256)

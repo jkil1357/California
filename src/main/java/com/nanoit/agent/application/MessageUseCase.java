@@ -33,7 +33,6 @@ public class MessageUseCase implements MessageInputPort {
         // 비즈니스 로직 1 - 수신번호가 전화번호가 맞는지
         // 비즈니스 로직 2 - 발신번호가 전화번호가 맞는지
         // 비즈니스 로직 3 - 메시지 내용이 있는지
-        // 비즈니스 로직
         if (message instanceof ShortMessage shortMessage) {
             // 1. 수신번호 유효성 검사 (숫자 10~11자리)
             if (!isValidPhoneNumber(shortMessage.receiveNumber())) {
@@ -74,7 +73,7 @@ public class MessageUseCase implements MessageInputPort {
                     // 전송 실패
                     persistenceOutputPort.update(shortMessage.withStatus("SENT_FAIL"));
                 }
-            } else if (shortMessage.to().equalsIgnoreCase("NANOIT")) {
+            } else if (shortMessage.status().equalsIgnoreCase("SELECTED")) {
                 // 나노아이티로 전송하고 싶을때
                 if (nanoitTransportOutputPort.send(message)) {
                     // 전송 성공
