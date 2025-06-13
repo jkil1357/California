@@ -1,6 +1,5 @@
 package com.nanoit.agent.application;
 
-import com.nanoit.agent.domain.LongMessage;
 import com.nanoit.agent.domain.Message;
 import com.nanoit.agent.domain.ShortMessage;
 import java.nio.charset.StandardCharsets;
@@ -30,9 +29,6 @@ public class MessageUseCase implements MessageInputPort {
     @Override
     public void send(Message message) {
         log.info("{}", message);
-        // 비즈니스 로직 1 - 수신번호가 전화번호가 맞는지
-        // 비즈니스 로직 2 - 발신번호가 전화번호가 맞는지
-        // 비즈니스 로직 3 - 메시지 내용이 있는지
         if (message instanceof ShortMessage shortMessage) {
             // 1. 수신번호 유효성 검사 (숫자 10~11자리)
             if (!isValidPhoneNumber(shortMessage.receiveNumber())) {

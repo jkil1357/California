@@ -48,9 +48,6 @@ public class ShortMessageServiceImpl implements ShortMessageService {
         return shortMessageServiceRepository.findById(id).orElseThrow();
     }
 
-    /**
-     * 추가됨
-     */
     @Override
     public void deleteById(String id) {
         shortMessageServiceRepository.deleteById(id);
